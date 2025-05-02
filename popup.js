@@ -92,7 +92,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const outputPath = downloadFolder ? `${downloadFolder}/${filename}` : filename;
       
       // Create the command
-      const command = `ffmpeg -i "${videoUrl}" -codec copy "${outputPath}"`;
+      // const command = `ffmpeg -i "${videoUrl}" -codec copy "${outputPath}"`;
+      const command = `yt-dlp --continue "${videoUrl}" -o "${outputPath}"`;
+      // const command = `yt-dlp --external-downloader aria2c --external-downloader-args "aria2c:-c -x 8 -k 1M" --merge-output-format mp4 -o "${outputPath}" "${videoUrl}"`;
+      // const command = `yt-dlp --external-downloader aria2c --external-downloader-args "aria2c:-c -x 4 -s 4 -j 2 -k 1M --retry-wait=10" --merge-output-format mp4 -o "${outputPath}" "${videoUrl}"`;
       
       // Display the command
       ffmpegCommand.textContent = command;
